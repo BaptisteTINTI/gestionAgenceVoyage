@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Reservation implements Serializable {
@@ -15,6 +16,8 @@ public class Reservation implements Serializable {
 	private Long idReservation;
 	private Date dateReservation;
 	private int nbJours;
+	@ManyToOne
+	private Hotel hotel;
 
 	public Reservation() {
 
@@ -23,6 +26,12 @@ public class Reservation implements Serializable {
 	public Reservation(Date dateReservation, int nbJours) {
 		this.dateReservation = dateReservation;
 		this.nbJours = nbJours;
+	}
+
+	public Reservation(Date dateReservation, int nbJours, Hotel hotel) {
+		this.dateReservation = dateReservation;
+		this.nbJours = nbJours;
+		this.hotel = hotel;
 	}
 
 	public Long getIdReservation() {
@@ -49,10 +58,18 @@ public class Reservation implements Serializable {
 		this.nbJours = nbJours;
 	}
 
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [idReservation=" + idReservation + ", dateReservation=" + dateReservation + ", nbJours="
-				+ nbJours + "]";
+				+ nbJours + ", hotel=" + hotel + "]";
 	}
 
 }
