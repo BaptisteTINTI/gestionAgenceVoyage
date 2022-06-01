@@ -1,6 +1,8 @@
 package com.inti.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,8 @@ public class Destination implements Serializable{
 	private Long idDestination;
 	private Long longitude;
 	private Long latitude;
+	
+	private List<Hotel> hotels = new ArrayList<>();
 	public Destination() {
 
 	}
