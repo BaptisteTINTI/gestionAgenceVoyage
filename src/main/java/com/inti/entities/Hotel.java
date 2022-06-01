@@ -22,14 +22,16 @@ public class Hotel implements Serializable {
 	private Destination destination;
 	@OneToMany(mappedBy = "hotel")
 	private List<Reservation> reservations = new ArrayList<>();
+	@OneToMany(mappedBy = "hotel")
+	private List<Avis> avis = new ArrayList<>();
 
 	public Hotel() {
-
 	}
 
-	public Hotel(String nom, int nbEtoile) {
+	public Hotel(String nom, int nbEtoile, List<Avis> avis) {
 		this.nom = nom;
 		this.nbEtoile = nbEtoile;
+		this.avis = avis;
 	}
 
 	public Hotel(String nom, int nbEtoile, Destination destination, List<Reservation> reservations) {
@@ -79,10 +81,21 @@ public class Hotel implements Serializable {
 		this.reservations = reservations;
 	}
 
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+
+	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Hotel [idHotel=" + idHotel + ", nom=" + nom + ", nbEtoile=" + nbEtoile + ", destination=" + destination
-				+ ", reservations=" + reservations + "]";
+				+ ", reservations=" + reservations + ", avis=" + avis + "]";
 	}
 
 }

@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Reservation implements Serializable {
@@ -18,20 +20,31 @@ public class Reservation implements Serializable {
 	private int nbJours;
 	@ManyToOne
 	private Hotel hotel;
+	@ManyToOne
+	private Voyageur voyageur;
 
 	public Reservation() {
 
 	}
 
-	public Reservation(Date dateReservation, int nbJours) {
+	public Reservation(Date dateReservation, int nbJours, Voyageur voyageur) {
 		this.dateReservation = dateReservation;
 		this.nbJours = nbJours;
+		this.voyageur = voyageur;
 	}
 
 	public Reservation(Date dateReservation, int nbJours, Hotel hotel) {
 		this.dateReservation = dateReservation;
 		this.nbJours = nbJours;
 		this.hotel = hotel;
+	}
+
+	public Reservation(Date dateReservation, int nbJours, Hotel hotel, Voyageur voyageur) {
+		super();
+		this.dateReservation = dateReservation;
+		this.nbJours = nbJours;
+		this.hotel = hotel;
+		this.voyageur = voyageur;
 	}
 
 	public Long getIdReservation() {
@@ -66,10 +79,19 @@ public class Reservation implements Serializable {
 		this.hotel = hotel;
 	}
 
+	public Voyageur getVoyageur() {
+		return voyageur;
+	}
+
+	public void setVoyageur(Voyageur voyageur) {
+		this.voyageur = voyageur;
+
+	}
+
 	@Override
 	public String toString() {
 		return "Reservation [idReservation=" + idReservation + ", dateReservation=" + dateReservation + ", nbJours="
-				+ nbJours + ", hotel=" + hotel + "]";
+				+ nbJours + ", hotel=" + hotel + ", voyageur=" + voyageur + "]";
 	}
 
 }
