@@ -1,11 +1,14 @@
 package com.inti.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Hotel implements Serializable {
@@ -14,14 +17,16 @@ public class Hotel implements Serializable {
 	private Long idHotel;
 	private String nom;
 	private int nbEtoile;
+	@OneToMany(mappedBy = "hotel")
+	private List<Avis> avis = new ArrayList<>();
 
 	public Hotel() {
-
 	}
 
-	public Hotel(String nom, int nbEtoile) {
+	public Hotel(String nom, int nbEtoile, List<Avis> avis) {
 		this.nom = nom;
 		this.nbEtoile = nbEtoile;
+		this.avis = avis;
 	}
 
 	public Long getIdHotel() {
@@ -48,9 +53,17 @@ public class Hotel implements Serializable {
 		this.nbEtoile = nbEtoile;
 	}
 
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
+
 	@Override
 	public String toString() {
-		return "Hotel [idHotel=" + idHotel + ", nom=" + nom + ", nbEtoile=" + nbEtoile + "]";
+		return "Hotel [nom=" + nom + ", nbEtoile=" + nbEtoile + ", avis=" + avis + "]";
 	}
 
 }
