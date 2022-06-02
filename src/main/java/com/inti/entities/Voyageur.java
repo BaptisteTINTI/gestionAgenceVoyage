@@ -14,10 +14,10 @@ import javax.persistence.OneToMany;
 public class Voyageur implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long idVoyageur;
-	public String nom;
-	public String prenom;
-	public int age;
+	private Long idVoyageur;
+	private String nom;
+	private String prenom;
+	private int age;
 	@OneToMany(mappedBy = "voyageur")
 	private List<Reservation> reservations = new ArrayList<>();
 
