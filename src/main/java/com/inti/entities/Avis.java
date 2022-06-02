@@ -13,8 +13,8 @@ import javax.persistence.ManyToOne;
 public class Avis implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long idAvis;
-	public String commentaire;
+	private Long idAvis;
+	private String commentaire;
 	@ManyToOne
 	private Hotel hotel;
 
